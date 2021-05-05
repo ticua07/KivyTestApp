@@ -1,0 +1,49 @@
+#:kivy 1.0
+MyLayout:
+    ip: ip
+    url: url
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+
+        spacing: 10
+
+        Label:
+            #size: [1,1]
+            size_hint: (.07,.07)
+            pos_hint: {"center_x": 0.5, "y":-1}
+            text: "[b]IP:[/b]"
+            markup: True
+
+        FloatInput:
+            id: ip
+            text: ""
+            multiline: False
+            size_hint: (.7, .012)
+            pos_hint: {'center_x': .5}
+            width: 300
+            height: 32
+            on_text: root.update_padding(args[0])
+            padding_x: (self.width - len(self.text)) / 2
+
+        Label:
+            text: "[b]URL:[/b]"
+            markup: True
+            size_hint: (.07,.07)
+            pos_hint: {"center_x": 0.5, "y":-1}
+
+        TextInput:
+            id: url
+            text: ""
+            multiline: False
+            size_hint: (.7, .012)
+            pos_hint: {'center_x': .5}
+            on_text: root.toggle_mode(self.text)
+
+
+        MDRaisedButton:
+            text: "Mandar"
+            size_hint: (.17, .02)
+            pos_hint: {"center_x": 0.5, "y":-1}
+            on_press: root.connect(ip.text, url.text)
+            md_bg_color: app.theme_cls.primary_color
