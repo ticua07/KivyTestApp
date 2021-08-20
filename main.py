@@ -2,7 +2,8 @@ from kivy.lang import Builder
 from kivy import Config
 import re
 from requests import get
-Config.set('graphics', 'multisamples', '0')
+# Unset this if program doesn't start
+#Config.set('graphics', 'multisamples', '0')
 from kivymd.app import MDApp
 from kivy.uix.textinput import TextInput
 from kivymd.uix.floatlayout import FloatLayout
@@ -25,7 +26,7 @@ class MyLayout(Screen):
                 "[a-zA-Z0-9@:%._\\+~#?&//=]" +
                 "{2,256}\\.[a-z]" +
                 "{2,6}\\b([-a-zA-Z0-9@:%" +
-                "._\\+~#?&//=]*)")
+                "._\\+~#?&//=]*)") # some regex i stole lmao
         
         p = re.compile(regex)
 
